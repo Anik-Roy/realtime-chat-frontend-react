@@ -38,6 +38,10 @@ const Chat = ({ location }) => {
         socket.on('message', (message) => {
             setMessages([...messages, message])
         });
+
+        socket.on("roomData", ({ users }) => {
+            setUsers(users);
+        });
     }, [messages]);
 
     const sendMessage = (event) => {
@@ -57,7 +61,7 @@ const Chat = ({ location }) => {
                 <Messages messages={messages} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
-            <TextContainer users={users}/>
+            <TextContainer users={users} />
         </div>
     )
 }
