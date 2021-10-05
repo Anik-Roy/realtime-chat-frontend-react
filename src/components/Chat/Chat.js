@@ -47,7 +47,7 @@ const Chat = ({ location }) => {
             socket.emit('disconnect');
             socket.off();
         }
-    }, [messages]);
+    }, []);
 
     const sendMessage = (event) => {
         event.preventDefault();
