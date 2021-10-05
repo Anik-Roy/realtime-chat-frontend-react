@@ -43,13 +43,13 @@ const Chat = ({ location }) => {
             setUsers(users);
         });
 
-        return () => {
-            socket.off('message', () => {
-                socket.emit('disconnect');
-            });
-            socket.off('roomData');
-            // socket.emit('disconnect');
-        }
+        // return () => {
+        //     socket.off('message', () => {
+        //         socket.emit('disconnect');
+        //     });
+        //     socket.off('roomData');
+        //     // socket.emit('disconnect');
+        // }
     }, [messages]);
 
     const sendMessage = (event) => {
