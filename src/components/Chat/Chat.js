@@ -20,7 +20,7 @@ const Chat = ({ location }) => {
 
     useEffect(() => {
         const { name, room } = queryString.parse(location.search);
-        socket = io(ENDPOINT);
+        socket = io.connect(ENDPOINT);
         setName(name);
         setRoom(room);
 
@@ -43,13 +43,11 @@ const Chat = ({ location }) => {
             setUsers(users);
         });
 
-        // return () => {
-        //     socket.off('message', () => {
-        //         socket.emit('disconnect');
-        //     });
-        //     socket.off('roomData');
-        //     // socket.emit('disconnect');
-        // }
+        return () => {
+            socket.off('message');
+            socket.off('roomData');
+            socket.emit('disconnect');
+        }
     }, [messages]);
 
     const sendMessage = (event) => {
