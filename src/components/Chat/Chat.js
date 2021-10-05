@@ -35,21 +35,20 @@ const Chat = ({ location }) => {
     }, [ENDPOINT, location.search]);
 
     useEffect(() => {
-        const messageListener = message => {
+        socket.on('message', message => {
             setMessages([...messages, message]);
-        }
+        });
 
-        const userListener = ({ users }) => {
+        socket.on("roomData", ({ users }) => {
             setUsers(users);
-        }
-        socket.on('message', messageListener);
-
-        socket.on("roomData", userListener);
+        });
 
         return () => {
-            socket.off('message', messageListener);
-            // socket.off('roomData', userListener);
-            socket.emit('disconnect');
+            socket.off('message', () => {
+                socket.emit('disconnect');
+            });
+            socket.off('roomData');
+            // socket.emit('disconnect');
         }
     }, [messages]);
 
