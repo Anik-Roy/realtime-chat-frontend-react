@@ -42,6 +42,11 @@ const Chat = ({ location }) => {
         socket.on("roomData", ({ users }) => {
             setUsers(users);
         });
+
+        return () => {
+            socket.emit('disconnect');
+            socket.off();
+        }
     }, [messages]);
 
     const sendMessage = (event) => {
