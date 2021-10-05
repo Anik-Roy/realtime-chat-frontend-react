@@ -44,9 +44,9 @@ const Chat = ({ location }) => {
         });
 
         return () => {
+            // socket.emit('disconnect');
             socket.off('message');
             socket.off('roomData');
-            socket.emit('disconnect');
         }
     }, [messages]);
 
@@ -58,7 +58,7 @@ const Chat = ({ location }) => {
         }
     }
 
-    // console.log(message, messages);
+    console.log(messages);
 
     return (
         <div className="outerContainer">
