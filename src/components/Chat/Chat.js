@@ -43,11 +43,11 @@ const Chat = ({ location }) => {
             setUsers(users);
         });
 
-        // return () => {
-        //     socket.emit('disconnect');
-        //     socket.off();
-        // }
-    }, []);
+        return () => {
+            socket.emit('disconnect');
+            socket.off();
+        }
+    }, [messages, users]);
 
     const sendMessage = (event) => {
         event.preventDefault();
