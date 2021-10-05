@@ -49,7 +49,7 @@ const Chat = ({ location }) => {
         return () => {
             socket.off('message', messageListener);
             socket.off('roomData', userListener);
-            socket.emit('disconnect');
+            // socket.emit('disconnect');
         }
     }, [messages, users]);
 
